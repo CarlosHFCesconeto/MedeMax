@@ -1,28 +1,8 @@
-# MedeMax v0.3.6 — Python compartilhado (23/10/2026)
+# MedeMax v0.3.6
 
 O programa utiliza o Python e as bibliotecas compartilhadas do computador. **Abra `run.bat` para iniciar:** ele não cria ambiente virtual e não instala bibliotecas. Se alguma dependência estiver ausente, execute **`instalar_dependencias.bat`** uma vez. Novas pastas de atualização usam a mesma instalação de Python. O título, a tela Sobre e o log identificam a versão **0.3.6**.
 
 As configurações, os dispositivos e o histórico continuam no mesmo diretório de dados do usuário. O `test.bat` e o `build_exe.bat` também usam o Python compartilhado; esses comandos de desenvolvimento instalam as dependências de testes/build quando executados.
-
-# Atualização — interface em português (23/10/2026)
-
-A navegação e o título agora usam **Dashbord**, conforme solicitado; **Tags** permanece **Tags**. Cadastros de dispositivos, tags e regras, botões Salvar/Cancelar/Aplicar/Sim/Não, campos, calendários, estados de comunicação, simulação, busca de registradores e menus dos gráficos/exportação estão em português brasileiro.
-
-As opções traduzidas mantêm os códigos e valores internos; configurações, nomes personalizados e dados existentes são preservados. O catálogo pt_BR do Qt está incluído em assets e é empacotado pelo build existente. Os diálogos de arquivo usam a interface do Qt em português. A janela de exportação dos gráficos foi ampliada para acomodar as opções. Veja **[docs/TRADUCOES.md](docs/TRADUCOES.md)**. Esta revisão integra a **v0.3.6**.
-
-# Atualização — exclusão de dispositivo e vínculos (23/10/2026)
-
-Em **Dispositivos → Excluir**, o aviso informa quantas tags, regras de alarme e ocorrências ativas estão vinculadas. Confirmar exclui o dispositivo e seus cadastros em uma única transação; Cancelar mantém tudo. A aquisição deve estar parada. Os outros dispositivos são preservados.
-
-Registros de medições, comandos e eventos permanecem no banco, sujeitos à política de retenção existente. As tags removidas saem da seleção de consulta; esta atualização não oferece um navegador de tags excluídas. Alarmes ativos das regras removidas deixam de ser ativos e aparecem no histórico como **Encerrado por exclusão**, com horário próprio; não recebem uma normalização fictícia.
-
-As traduções da interface foram aprovadas e aplicadas. Consulte **[docs/TRADUCOES.md](docs/TRADUCOES.md)** para a relação por menu.
-
-# Atualização — mapa real de 26 variáveis (23/10/2026)
-
-Em **Dispositivos**, selecione um medidor e use **Aplicar mapa 26 variáveis**. Repetir não duplica tags. Leitura FC04 0–25 em bloco, escalas da tabela, formato com/sem sinal selecionável para potência ativa/reativa e fator de potência. Depois clique em **Iniciar aquisição**. **Simular mapa 26 variáveis** permite ensaiar sem hardware.
-
-Leia **[GUIA_26_VARIAVEIS.md](GUIA_26_VARIAVEIS.md)** antes de conectar: o perfil assume um inteiro de 16 bits por variável e endereço base zero. Nenhum IP, COM ou Slave ID real é preenchido automaticamente. Conteúdo incluído na v0.3.6. As atualizações datadas mais recentes prevalecem sobre descrições históricas abaixo.
 
 # Modo de apresentação
 
@@ -60,18 +40,6 @@ Cards trifásicos do painel individual: primeira linha Tensão 1 / 2 / 3 / N; se
 6. Em Diagnóstico, ative **Capturar recebimentos/envios (RX/TX)** para ver operações SIM/OP sintéticas. Modos timeout/offline/alarme se aplicam a todos os simuladores em execução. Não são frames físicos nem teste de vazão RS485. O modo alarme produz sobretensão L1 nos novos medidores; retorno a normal normaliza as regras.
 
 O mapa 100–107 é exclusivamente fictício. Tensão do neutro usa uma referência fictícia; não define o circuito real. A simulação percorre aquisição, conversão de tags, histórico e alarmes. Não reproduz latência de cabo, USB, RTU ou TCP. Leituras continuam por tag, sem agrupamento Modbus.
-
-# Atualização — gráficos e aquisição (01/10/2026)
-
-- Dashbord e Monitoramento: eixos X/Y automáticos ativados por padrão. Desmarque a opção para explorar com zoom manual.
-- Monitoramento: janelas até 24 horas; dados desta sessão, reiniciar/limpar ainda limpa o gráfico ao vivo. Para sessões anteriores use Histórico.
-- Memória limitada: até 32 mil amostras recentes por tag e 8.641 blocos de dez segundos com primeiro/último, extremos e indicação de falha. Até 4 mil pontos por série enviados à tela. Janelas longas são uma visão resumida, não uma reprodução de cada amostra.
-- Histórico: preset Último mês (mês anterior à data atual), consulta todo o período, sem truncar nas últimas 20 mil amostras. Visão por até aproximadamente 1.200 intervalos por tag, exibindo faixa mínimo/máximo; os extremos são posicionados no início do intervalo, não no instante exato de ocorrência. Falhas são indicadas como lacunas. A tabela mostra as últimas 500 amostras; o CSV exporta todas as amostras do período.
-- Consultas históricas usam conexão de leitura separada, fora da UI. Períodos densos ainda podem demorar; não foi validado desempenho com meses de aquisição em alta frequência.
-- Retenção padrão nova: 60 dias. Configuração existente é preservada: em Configurações, ajuste para pelo menos 32 dias (ou 60) e salve para manter um mês completo. Dados já removidos não são recuperados.
-- Polling aceita 20 ms a 3.600.000 ms. Agora representa o período alvo entre inícios dos ciclos, sem somar o intervalo ao tempo de leitura. Ciclos atrasados não são acumulados; requisições seguem sequenciais no barramento. A UI atualiza a cada 200 ms, independentemente da aquisição.
-- 20 ms é uma configuração, não garantia de frequência. O tempo por tag, baud rate, número de tags, retries e atualização interna do medidor determinam a taxa real. Leituras agrupadas seguem pendentes. Aumentar baud rate exige suporte e configuração compatível no equipamento.
-- Validação física RS485 e Windows continua necessária.
 
 # MedeMax 0.3.6 — supervisório Modbus do Grupo Maxwell
 
